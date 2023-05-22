@@ -68,8 +68,7 @@
         loginBtn.addEventListener("click", function(){
             const loginArea = document.getElementById("login-area")
             loginArea.style.display = "none";
-            const transactionArea = document.getElementById("transaction-area")
-            transactionArea.style.display = "block";
+            const depositNumber = getInputNumber("depositAmount")
         })
 
         // deposit button
@@ -95,6 +94,7 @@
         function updateSpanText(id, depositNumber){
             const current = document.getElementById(id).innerText;
             const currentNumber = parseFloat(current);
+
             const totalAmount = depositNumber + currentNumber;
             document.getElementById(id).innerText = totalAmount;
         }
@@ -102,15 +102,16 @@
       // withdraw button event
       const withdrawBtn = document.getElementById("addWithdraw");
         withdrawBtn.addEventListener("click", function(){
-          const withdrawNumber = getInputNumber("withdrawAmount ");
+          const withdrawNumber = getInputNumber("withdrawAmount");
         
-          updateSpanText("currentWithdraw", withdrawNumber)
+          updateSpanText("currentWithdraw", withdrawNumber);
+          updateSpanText("currentBalance", -1 * withdrawNumber);
            
           document.getElementById("withdrawAmount").value = "";
         })
         function getInputNumber(id){
-            const withdrawAmount = document.getElementById(id).Value;
-          const amountNumber = parseFloat(withdrawAmount);
+            const amount = document.getElementById(id).value;
+          const amountNumber = parseFloat(amount);
           return amountNumber;
         }
 
